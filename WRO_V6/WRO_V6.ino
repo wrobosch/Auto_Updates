@@ -45,11 +45,8 @@ float angleAtSpeedDist = 0;
 float angleAtCamDist = 0;
 float camDistance = 10000;
 int zaehler = 0;
-int ecke = 0; // 1/4 Einer Runde
-//bool vor = true;
 int block_color = 0;
 int block_location = 0;
-bool orange_line = 0;
 int mSpeed = 0;             // Geschwindigkeit des Motors
                             // in 1s -> 50=10,2cm; 100=23,7cm; 150=37cm; 200=49,5cm; 250=60cm
 bool status = true;
@@ -117,7 +114,7 @@ void loop() {
           {
             lenkung.write(winkel(map(angleAtMaxDist, -90, 90, -45, 45)));
           }
-          //block_color = 0;
+          block_color = 0;
           
         }
 
@@ -141,10 +138,7 @@ void loop() {
           {
             lenkung.write(winkel(angleAtMinDist)); //Lenkung zum Minimalen Abstand
           }
-          //block_color = 0;
-          if (ecke == 12) {
-             mSpeed = 0;
-          }         
+          block_color = 0;        
 
           
           back(80);
@@ -171,10 +165,8 @@ void loop() {
         }
         else
         {
-          //mSpeed = 200;
+          mSpeed = 200;
         }
-
-        //block_color = 0;
 
         if(camDistance < 20000)
         {
@@ -188,19 +180,12 @@ void loop() {
             block_color = 0;
             for (int i=0; i<pixy.ccc.numBlocks; i++)
             {
-              //Serial.print("  block ");
-              //Serial.print(i);
-              //Serial.print(": ");
               //pixy.ccc.blocks[i].print();
               //Serial.println(pixy.ccc.blocks[i].m_signature);
               if(pixy.ccc.blocks[i].m_age > old_age )// && 130 > (pixy.ccc.blocks[i].m_height + pixy.ccc.blocks[i].m_y))
               {
                 old_age = pixy.ccc.blocks[i].m_age;
                 block_color = pixy.ccc.blocks[i].m_signature;
-                //Serial.print("Color ");
-                //Serial.print(i);
-                //Serial.print(" : ");
-                //Serial.println(block_color);
                 //x=0 ist links und x=315 ist rechts --> ab 158 ist rechts --> x + width/2 > 158 dann rechts
                 block_location = map(( pixy.ccc.blocks[i].m_x + pixy.ccc.blocks[i].m_width/2 ), 0, 315, -27, 27); //somit ist 0 = -27° und 315 = +27°
                 //block_hight = pixy.ccc.blocks[i].m_height + pixi.ccc.blocks[i].m_y;
@@ -334,29 +319,4 @@ void back(int speed)
     digitalWrite(r_motor, 1);
   }
   analogWrite(motor, speed);
-}
-
-void boden()
-{
-   if(block_color == 2) //Orange = 2
-   {
-      //pixy.setLamp(1,0);
-      //mSpeed = 150;
-      orange_line=1;
-      Serial.println(block_color);
-      block_color=0;
-   }
-   if(orange_line == 1)
-   {
-      if(block_color == 7) //Violett = 7
-      {
-        orange_line = 0;
-        //mSpeed = 0;
-        Serial.println(block_color);
-        //pixy.setLamp(0,0);
-        ecke++;
-        Serial.print("Ecke: ");
-        Serial.print(ecke);
-      }
-   }
 }
