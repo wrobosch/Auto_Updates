@@ -40,7 +40,6 @@ float angleAtSafeDist = 0;
 float speedDistance = 10000;
 float angleAtSpeedDist = 0;
 int zaehler = 0;
-//bool vor = true;
 int block_color = 0;
 int block_location = 0;
 int mSpeed = 0;             // Geschwindigkeit des Motors
@@ -170,7 +169,6 @@ void loop() {
             }
           }
         } 
-        //zaehler = 0;
       }
 
       vor(mSpeed);
