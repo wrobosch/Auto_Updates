@@ -39,7 +39,6 @@ float backDistance = 10000;
 float angleAtBackDist = 0;
 float speedDistance = 10000;
 float angleAtSpeedDist = 0;
-//bool vor = true;
 int block_color = 0;
 int mSpeed = 0;             // Geschwindigkeit des Motors
                             // in 1s -> 50=10,2cm; 100=23,7cm; 150=37cm; 200=49,5cm; 250=60cm
