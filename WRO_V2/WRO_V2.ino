@@ -63,15 +63,10 @@ void loop() {
       {
         // beide Motoren werden ausgeschalten, umgepolt und fahren 1,5s rückwärts gefahren.
         analogWrite(motor, 0);
-        //delay(100);
-        //delay(100);
         lenkung.write(winkel(angleAtMinDist)); //Lenkung zum Minimalen Abstand
         back(80);
         delay(1500);
         analogWrite(motor, 0);
-        //delay(100);
-        //mSpeed = 50;
-        //delay(100);
       }
       //sonst
       else if(speedDistance < 220 || minDistance < 120)
@@ -186,8 +181,6 @@ void vor(int speed)
 void back(int speed)
 {
   analogWrite(motor, 0);
-  //mSpeed = 0;
-  //delay(100);
   if(digitalRead(l_motor))
   {
     digitalWrite(l_motor, LOW);
