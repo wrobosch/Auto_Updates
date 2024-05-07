@@ -43,7 +43,6 @@ float angleAtSpeedDist = 0;
 float angleAtCamDist = 0;
 float camDistance = 10000;
 int zaehler = 0;
-//bool vor = true;
 int block_color = 0;
 int block_location = 0;
 int mSpeed = 0;             // Geschwindigkeit des Motors
@@ -94,8 +93,6 @@ void loop() {
         {
           lenkung.write(winkel(map(angleAtMaxDist, -90, 90, -45, 45)));
         }
-        //block_color = 0;
-        
       }
 
       
@@ -180,7 +177,6 @@ void loop() {
           {
             
           }
-        //zaehler = 0;
       }
 
       vor(mSpeed);
